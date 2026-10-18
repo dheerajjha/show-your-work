@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest something show-your-work should check or do
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do
+      description: >
+        What your agent said or did, and where show-your-work got in the way
+        or stayed silent. The problem is more useful than a proposed solution.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you have in mind
+      description: Optional. If you already have a shape in mind, describe it.
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: This keeps everything on my machine, with no network requests
+          required: false
+        - label: I'd be willing to open a pull request for this
+          required: false

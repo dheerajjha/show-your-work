@@ -1,0 +1,54 @@
+name: Wrong verdict
+description: The check stopped an honest message, or let an unbacked claim through
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please don't paste a real session log. Those logs hold your code, your
+        prompts and your email address. The sentence and the commands are
+        enough: the fix comes with a test that builds the session in code.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Which way was it wrong?
+      options:
+        - It stopped a message that was honest (a false alarm)
+        - It let through a claim nothing backed (a miss)
+        - It misread a command or its output
+    validations:
+      required: true
+
+  - type: textarea
+    id: claim
+    attributes:
+      label: The sentence in the agent's final message
+      placeholder: All 12 tests pass.
+    validations:
+      required: true
+
+  - type: textarea
+    id: ran
+    attributes:
+      label: What ran after the last edit
+      description: The commands, in order, with the line of output that showed each result.
+      placeholder: |
+        npm test  ->  # tests 12  # pass 12
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: verdict
+    attributes:
+      label: What show-your-work said
+      description: The message it stopped the agent with, or the line from `audit`.
+      render: shell
+
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: show-your-work (`npx github:dheerajjha/show-your-work --version`), Claude Code, and your OS.
+      placeholder: show-your-work 0.1.0, Claude Code 2.1.290, macOS 15.1
