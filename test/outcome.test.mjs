@@ -34,6 +34,21 @@ test('zero tests is not a pass', () => {
   }
 });
 
+test('zero tests from rspec, ExUnit, Swift, Deno and ctest are not passes', () => {
+  for (const text of [
+    'No examples found.\n0 examples, 0 failures',
+    '0 tests, 0 failures',
+    'Executed 0 tests, with 0 failures',
+    'ok | 0 passed | 0 failed (0 steps)',
+    'No tests were found!!!',
+  ]) {
+    assert.equal(outcomeOf({ isError: false, text }, T).status, 'empty', text);
+  }
+  for (const text of ['3 examples, 0 failures', '4 tests, 0 failures']) {
+    assert.equal(outcomeOf({ isError: false, text }, T).status, 'passed', text);
+  }
+});
+
 test('a command that never ran is reported as such', () => {
   assert.equal(outcomeOf({ isError: true, text: '<tool_use_error>Blocked: sleep 25</tool_use_error>' }, T).status, 'notrun');
   assert.equal(outcomeOf({ isError: true, text: "The user doesn't want to proceed with this tool use." }, T).status, 'notrun');
