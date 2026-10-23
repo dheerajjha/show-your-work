@@ -1,6 +1,6 @@
 {
   "name": "show-your-work",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Makes the agent back \"tests pass\", \"it builds\" and \"it works\" with the command it ran after its last edit and the output that proves it.",
   "author": { "name": "Dheeraj Jha", "url": "https://github.com/dheerajjha" },
   "homepage": "https://github.com/dheerajjha/show-your-work",

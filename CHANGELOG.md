@@ -2,18 +2,22 @@
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-10-23
+
 ### Fixed
 
-- Reject invalid `audit --days` and `--limit` values instead of silently
-  ignoring them or consuming a non-numeric session path. Valid numeric values
-  remain valid when a same-named file or directory exists. `check` now exits 2 for unknown
-  options or a missing file; an unbacked claim still exits 1 (#6).
-- **bazel, turbo, hatch, pants and dune test runs.** `bazel test` /
-  `bazelisk test`, `turbo run test` (bare or through npx, pnpm or yarn),
-  `hatch test`, `pants test` and `dune test` were read as a build or as
-  other, so a true "tests pass" after one was stopped. They now count as
-  test runs, as do `dune runtest`, `dune build @runtest` and `hatch run test`.
-  `bazel build` stays a build (#4).
+- **More test runners count as test runs.** `bazel test` read as a build.
+  `turbo run test`, `hatch test`, `pants test` and `dune test` read as
+  something else entirely, so a true "tests pass" after any of them was
+  stopped. They all count now, and so do `dune runtest`, `dune build
+  @runtest`, `hatch run test` and turbo through npx, pnpm or yarn.
+  `bazel build` is still a build (#4, #10, from @dbdefault).
+- **`audit` refuses a bad `--days` or `--limit`.** A value that wasn't a
+  positive number was quietly read as "all time" or ignored. `--days`
+  followed by a folder audited the default folder instead. Each now exits 2
+  and says which option needs a number. `check` exits 2 too, for an unknown
+  option or a missing file, so a script can tell a mistyped command (2) from
+  an unbacked claim (1) (#6, #9, from @dbdefault).
 
 ## [0.1.2] - 2026-10-21
 
@@ -60,7 +64,8 @@ First release.
 - **Rules for agents that read AGENTS.md**, and plugin manifests for Codex,
   Cursor and Copilot CLI.
 
-[Unreleased]: https://github.com/dheerajjha/show-your-work/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/dheerajjha/show-your-work/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/dheerajjha/show-your-work/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/dheerajjha/show-your-work/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/dheerajjha/show-your-work/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/dheerajjha/show-your-work/releases/tag/v0.1.0

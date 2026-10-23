@@ -170,11 +170,10 @@ It reads `~/.claude/projects` (the last 30 days by default), prints a summary,
 and sends nothing anywhere. In Claude Code, `/show-your-work:audit` does the
 same.
 
-`audit --days <n>` and `--limit <n>` require positive integers. Missing or
-invalid values exit 2 instead of silently changing which sessions are read.
-Numeric option values stay valid even when a same-named file or directory exists.
-`check` also exits 2 for unknown options or a missing
-session file; an unbacked claim still exits 1.
+`audit --days <n>` and `--limit <n>` take positive whole numbers. A missing or
+invalid value exits 2 rather than quietly changing which sessions are read.
+`check` also exits 2 for an unknown option or a missing session file, so a
+mistyped command (2) is never mistaken for an unbacked claim (1).
 
 ## How it works
 

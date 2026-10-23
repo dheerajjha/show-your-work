@@ -1,6 +1,6 @@
 {
   "name": "show-your-work",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "description": "Your coding agent says it's done. Show your work. A skill and a Stop hook that make Claude Code, Codex, Cursor and Gemini CLI show the command and the output behind \"tests pass\".",
   "type": "module",
