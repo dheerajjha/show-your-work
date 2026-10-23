@@ -8,6 +8,12 @@
   ignoring them or consuming a non-numeric session path. Valid numeric values
   remain valid when a same-named file or directory exists. `check` now exits 2 for unknown
   options or a missing file; an unbacked claim still exits 1 (#6).
+- **bazel, turbo, hatch, pants and dune test runs.** `bazel test` /
+  `bazelisk test`, `turbo run test` (bare or through npx, pnpm or yarn),
+  `hatch test`, `pants test` and `dune test` were read as a build or as
+  other, so a true "tests pass" after one was stopped. They now count as
+  test runs, as do `dune runtest`, `dune build @runtest` and `hatch run test`.
+  `bazel build` stays a build (#4).
 
 ## [0.1.2] - 2026-10-21
 

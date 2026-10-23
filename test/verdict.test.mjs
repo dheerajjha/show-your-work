@@ -17,6 +17,13 @@ test('a claim with a passing run after the last edit is backed', () => {
   assert.equal(v.claims.length, 1);
 });
 
+test('a passing bazel test backs All tests pass', () => {
+  const v = run(new Session().user('fix it').edit('/work/app/src/a.js')
+    .bash('bazel test //...', '//...                          PASSED in 1.2s\nExecuted 4 out of 4 tests: 4 tests pass.')
+    .say('All tests pass.'));
+  assert.deepEqual(types(v), []);
+});
+
 test('a claim with no run at all is flagged', () => {
   const v = run(new Session().user('fix it').edit('/work/app/src/a.js').say('Fixed. All tests pass.'));
   assert.deepEqual(types(v), ['no-run']);
